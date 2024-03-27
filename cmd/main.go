@@ -8,6 +8,11 @@ import (
 
 func main() {
 	fmt.Println("Welcome to Go Bookstore")
-	db := config.ConnectDb()
+	db, err := config.ConnectDb()
+
+	if err != nil {
+		panic("Error connecting to the database!")
+	}
+	// do something with the database
 	fmt.Println(db)
 }
