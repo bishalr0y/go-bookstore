@@ -46,7 +46,7 @@ func GetBookById(c *gin.Context) {
 
 	if id == "" {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "id query not provided",
+			"error": "id param not provided",
 		})
 		return
 	}
@@ -66,6 +66,42 @@ func GetBookById(c *gin.Context) {
 }
 
 func UpdateBook(c *gin.Context) {
+	id := c.Param("id")
+	var book models.Book
+	var updatedBook models.Book
+
+	if id == "" {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "id param not provided",
+		})
+		return
+	}
+	//  find the book to update
+	db.First(&book, id)
+	if book.ID == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "book not found",
+		})
+		return
+	}
+
+	c.BindJSON(&updatedBook)
+	if err := validate.Struct(updatedBook); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	book.Author = updatedBook.Author
+	book.Title = updatedBook.Title
+	book.Publication = updatedBook.Publication
+
+	db.Save(&book)
+
+	c.JSON(http.StatusOK, gin.H{
+		"updatedBook": book,
+	})
 
 }
 
