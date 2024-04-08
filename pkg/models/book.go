@@ -9,13 +9,14 @@ import (
 )
 
 var db *gorm.DB
-var err error
+
+// var err error
 
 type Book struct {
 	gorm.Model
-	Author      string `json:"author"`
-	Title       string `json:"title"`
-	Publication string `json:"publication"`
+	Author      string `json:"author" validate:"required"`
+	Title       string `json:"title" validate:"required"`
+	Publication string `json:"publication" validate:"required"`
 }
 
 func Init() {
