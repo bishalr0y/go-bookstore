@@ -41,6 +41,27 @@ func CreateBook(c *gin.Context) {
 }
 
 func GetBookById(c *gin.Context) {
+	var book models.Book
+	id := c.Param("id")
+
+	if id == "" {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "id query not provided",
+		})
+		return
+	}
+	db.First(&book, id)
+
+	if book.ID == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "book with such id doesn't exists",
+			"note":  "book id starts from 1",
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"book": book,
+	})
 
 }
 
