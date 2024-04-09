@@ -11,7 +11,7 @@ A simple GoLang REST API with a structured folder structure. It makes use of Gin
 ```
 git clone <the URL of the GitHub repo>
 ```
-- Use docker-compose to run the Postgres container
+- ``cd`` into the project directory and use docker-compose to run the Postgres container
 ```
 docker compose up -d
 ```
