@@ -10,8 +10,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// var book models.Book
-
 var db = config.ConnectDb()
 var validate = validator.New(validator.WithRequiredStructEnabled())
 

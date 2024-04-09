@@ -24,5 +24,3 @@ func main() {
 	r.Run(":9010")
 
 }
-
-//! Calling the router and running the server on the port 9010
