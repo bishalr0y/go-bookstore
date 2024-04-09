@@ -13,6 +13,7 @@ git clone <the URL of the GitHub repo>
 ```
 - ``cd`` into the project directory and use docker-compose to run the Postgres container
 ```
+cd go-bookstore
 docker compose up -d
 ```
 - ``cd`` into the cmd directory and run the ``main.go`` file
