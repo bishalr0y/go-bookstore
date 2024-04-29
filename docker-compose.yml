@@ -9,10 +9,17 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=bookstore
     ports:
-      - 5430:5432
+      - 5432:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data/
 
+  backend:
+    container_name: bookstore-backend
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 9010:9010
 volumes:
   postgres_data:
     driver: local
