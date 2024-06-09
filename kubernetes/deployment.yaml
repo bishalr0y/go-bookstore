@@ -21,13 +21,11 @@ spec:
         env:
           - name: POSTGRES_USERNAME
             value: postgres
-          # - name: POSTGRES_PASSWORD
-          #   valueFrom:
-          #     secretKeyRef:
-          #       name:  postgres-cred
-          #       key:  postgres-password
           - name: POSTGRES_PASSWORD
-            value: postgres
+            valueFrom:
+              secretKeyRef:
+                name:  postgres-cred
+                key:  postgres-password
           - name: POSTGRES_DB
             value: bookstore
         ports:
