@@ -13,6 +13,12 @@ import (
 var db = config.ConnectDb()
 var validate = validator.New(validator.WithRequiredStructEnabled())
 
+func TestRoute(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"message": "hello world!",
+	})
+}
+
 func GetBooks(c *gin.Context) {
 	var books []models.Book
 	db.Find(&books)

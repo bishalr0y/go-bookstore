@@ -7,6 +7,8 @@ import (
 
 func RegisterBookstoreRoutes(router *gin.Engine) {
 
+	router.GET("/", controllers.TestRoute)
+
 	router.GET("/book", controllers.GetBooks)
 	router.POST("/book", controllers.CreateBook)
 	router.GET("/book/:id", controllers.GetBookById)
