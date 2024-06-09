@@ -14,7 +14,7 @@ services:
       - postgres_data:/var/lib/postgresql/data/
 
   backend:
-    container_name: bookstore-backend
+    container_name: go-bookstore
     build:
       context: ./
       dockerfile: Dockerfile

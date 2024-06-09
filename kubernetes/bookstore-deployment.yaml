@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookstore-deployment
+spec:
+  selector:
+    matchLabels:
+      app: go-bookstore
+  template:
+    metadata:
+      labels:
+        app: go-bookstore
+    spec:
+      containers:
+      - name: go-bookstore
+        image: bishalr0y/go-bookstore:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 9010
+      imagePullSecrets:
+      - name:  dockerhub-cred
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bookstore-service
+spec:
+  selector:
+    app: go-bookstore
+  type: LoadBalancer
+  ports:
+  - port: 9010
+    targetPort: 9010
+
+
